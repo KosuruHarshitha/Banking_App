@@ -1,0 +1,186 @@
+@use "../../../styles/media-queries" as *;
+@use "../../../styles/variables" as *;
+
+.top-nav {
+  background-color: $background-color;
+  padding: 1rem 0;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.nav-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.left-side,
+.center-side,
+.right-side {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+.left-side {
+  justify-content: flex-start;
+}
+
+.center-side {
+  justify-content: center;
+}
+
+.right-side {
+  justify-content: flex-end;
+  gap: 1rem;
+}
+
+.logo a {
+  text-decoration: none;
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: $black;
+}
+
+.menu-icon {
+  display: none;
+  cursor: pointer;
+  font-size: 2rem;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links li a {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  color: #333;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.nav-links li a:hover {
+  color: #0077cc;
+}
+
+.icons {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.bell-icon {
+  background-color: $background-color;
+  padding: 8px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 24px;
+  color: #333;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  background-color: rgb(74, 147, 242);
+  color: $white;
+  font-weight: bold;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  text-transform: uppercase;
+}
+
+.user-name {
+  font-weight: 600;
+  font-size: 1rem;
+  color: #242323;
+}
+
+@include isMobile {
+  .center-side {
+    position: absolute;
+    top: 70px;
+    left: 0;
+    right: 0;
+    background: $background-color;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .nav-links.open {
+    display: flex;
+    padding: 1rem 0;
+  }
+
+  .right-side .icons {
+    display: none;
+  }
+
+  .menu-icon {
+    display: block;
+  }
+}
+
+@include isTablet {
+  .center-side {
+    position: absolute;
+    top: 70px;
+    left: 0;
+    right: 0;
+    background: $background-color;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .nav-links.open {
+    display: flex;
+    padding: 1rem 0;
+  }
+
+  .right-side .icons {
+    display: none;
+  }
+
+  .menu-icon {
+    display: block;
+  }
+}

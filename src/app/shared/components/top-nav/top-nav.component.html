@@ -1,0 +1,40 @@
+<nav class="top-nav">
+  <div class="container">
+    <div class="nav-content">
+      <div class="left-side">
+        <div class="logo">
+          <a routerLink="/">My Bank</a>
+        </div>
+      </div>
+
+      <div class="center-side">
+        <ul class="nav-links" [class.open]="isMenuOpen">
+          <li>
+            <a routerLink="/accounts"> Accounts </a>
+          </li>
+          <li>
+            <a routerLink="/transfers"> Transfer </a>
+          </li>
+          <li>
+            <a routerLink="/history"> History </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="right-side">
+        <div class="icons">
+          <div class="user-info">
+            <div class="avatar">{{ avatar }}</div>
+            <span class="user-name"
+              >{{ userDetails.firstName }} {{ userDetails.lastName }}</span
+            >
+          </div>
+        </div>
+        <!-- Hamburger only shows on mobile -->
+        <div class="menu-icon" (click)="toggleMenu()">
+          <mat-icon>{{ isMenuOpen ? "close" : "menu" }}</mat-icon>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>

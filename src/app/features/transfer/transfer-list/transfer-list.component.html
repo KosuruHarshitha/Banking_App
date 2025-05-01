@@ -1,0 +1,34 @@
+<mat-card class="transfer-list-card">
+  <h2 class="card-title">Transactions</h2>
+
+  <ng-container *ngIf="latestTransfers?.length; else noTransfers">
+    <div class="transfer-item" *ngFor="let transfer of latestTransfers">
+      <div>
+        <span class="label">From:</span>
+        <span class="value">****{{ transfer.fromAccount.slice(-4) }}</span>
+      </div>
+      <div>
+        <span class="label">To:</span>
+        <span class="value">****{{ transfer.toAccount.slice(-4) }}</span>
+      </div>
+      <div>
+        <span class="label">Amount:</span>
+        <span class="value">{{ transfer.amount | currency }}</span>
+      </div>
+      <div>
+        <span class="label">Date:</span>
+        <span class="value">{{
+          transfer.date | date : "MMM d, y, h:mm a"
+        }}</span>
+      </div>
+      <div *ngIf="transfer.note">
+        <span class="label">Note:</span>
+        <span class="value">{{ transfer.note }}</span>
+      </div>
+    </div>
+  </ng-container>
+
+  <ng-template #noTransfers>
+    <div class="no-transfers-message">No transactions found.</div>
+  </ng-template>
+</mat-card>

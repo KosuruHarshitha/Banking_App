@@ -1,0 +1,104 @@
+@use "../../../styles/media-queries" as *;
+@use "../../../styles/variables" as *;
+
+.transfer-funds-card {
+  width: 100%;
+  margin: 2rem auto;
+  padding: 2rem;
+  border-radius: 12px;
+  background: $background-color;
+  box-shadow: 0 6px 18px rgba(13, 10, 10, 0.1);
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  color: $black;
+
+  @include isMobile {
+    font-size: 1.5rem;
+  }
+  @include isTablet {
+    font-size: 2rem;
+  }
+}
+
+.form-row {
+  margin-bottom: 1.3rem;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+}
+
+.account-available {
+  font-size: 0.9rem;
+  margin-top: 0.2rem;
+  color: $grey;
+}
+
+.sub-heading,
+.date_sub-heading {
+  font-size: 0.95rem;
+  color: #0f0e0e;
+  margin-bottom: 0.5rem;
+}
+
+/* Date Display Field */
+.date-display {
+  padding: 0.75rem 1.5rem;
+  background-color: rgb(235, 233, 233);
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #111;
+  display: inline-block;
+  width: 9%;
+
+  @include isMobile {
+    width: auto;
+    text-align: center;
+  }
+
+  @include isTablet {
+    width: auto;
+  }
+}
+
+mat-form-field {
+  width: 100%;
+
+  .mat-form-field-outline {
+    border-radius: 10px;
+  }
+
+  .mat-form-field-infix {
+    padding: 0.75rem 1rem;
+  }
+
+  input.mat-input-element {
+    font-size: 1rem;
+    color: $black;
+  }
+
+  ::placeholder {
+    color: $grey;
+    opacity: 1;
+  }
+}
+
+mat-error {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: $red;
+  margin-top: 0.25rem;
+}
+
+/* Button alignment */
+.form-actions {
+  margin-top: 2rem;
+  display: flex;
+  align-items: center;
+}

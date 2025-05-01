@@ -1,0 +1,61 @@
+<mat-card class="history-card">
+  <h2 class="title">Transaction History</h2>
+  <mat-form-field appearance="outline" class="search-field">
+    <mat-label>Search Transfers</mat-label>
+    <input matInput placeholder="Type anything..." [formControl]="searchText" />
+  </mat-form-field>
+
+  <div class="transaction-table-wrapper">
+    <table class="transaction-table">
+      <thead>
+        <tr>
+          <th class="col-from">From Account</th>
+          <th class="col-to">To Account</th>
+          <th class="col-amount">Amount</th>
+          <th class="col-date">Date</th>
+          <th class="col-note">Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of placeholderRows">
+          <td class="col-from">****{{ item?.fromAccount?.slice(-4) }}</td>
+          <td class="col-to">****{{ item?.toAccount?.slice(-4) }}</td>
+          <td class="col-amount">{{ item?.amount | currency }}</td>
+          <td class="col-date">{{ item?.date | date : "MMM d, y" }}</td>
+          <td class="col-note">{{ item?.note || "No description" }}</td>
+        </tr>
+      </tbody>
+      <tr *ngIf="!placeholderRows.length">
+        <td class="col-from col-place">--</td>
+        <td class="col-to col-place">--</td>
+        <td class="col-amount col-place">--</td>
+        <td class="col-date col-place">--</td>
+        <td class="col-note col-place">--</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="pagination-controls">
+    <div class="pagination-info">
+      Showing {{ pageSize }} of {{ totalTransactions }} transactions
+    </div>
+
+    <div class="pagination-buttons">
+      <app-button
+        [label]="'Previous'"
+        [type]="'button'"
+        (click)="onPrevious()"
+        [disabled]="currentPage === 1"
+      >
+      </app-button>
+
+      <app-button
+        [label]="'Next'"
+        [type]="'button'"
+        (click)="onNext()"
+        [disabled]="currentPage * pageSize >= totalTransactions"
+      >
+      </app-button>
+    </div>
+  </div>
+</mat-card>

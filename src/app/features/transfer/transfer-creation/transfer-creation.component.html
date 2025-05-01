@@ -1,0 +1,126 @@
+<mat-card class="transfer-funds-card">
+  <h2 class="title">Transfer Funds</h2>
+  <form [formGroup]="transferForm" (ngSubmit)="onSubmit()">
+    <!-- From Account Field -->
+    <div class="form-row">
+      <div class="form-field">
+        <h3 class="sub-heading">From Account</h3>
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-select
+            formControlName="fromAccount"
+            placeholder="Select From Account"
+          >
+            <mat-option
+              *ngFor="let account of accounts"
+              [value]="account.accountNumber"
+            >
+              {{ account.accountType }} (****{{
+                account.accountNumber.slice(-4)
+              }})
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="fromAccount?.hasError('required')">
+            From account is required.
+          </mat-error>
+        </mat-form-field>
+        <div *ngIf="fromAccount?.value" class="account-available">
+          Available:
+          {{ getFromAccountBalance() | currency }}
+        </div>
+      </div>
+    </div>
+
+    <!-- To Account Field -->
+    <div class="form-row">
+      <div class="form-field">
+        <h3 class="sub-heading">To Account</h3>
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-select
+            formControlName="toAccount"
+            placeholder="Select To Account"
+          >
+            <mat-option
+              *ngFor="let account of accounts"
+              [value]="account.accountNumber"
+            >
+              {{ account.accountType }} (****{{
+                account.accountNumber.slice(-4)
+              }})
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="toAccount?.hasError('required')">
+            To account is required.
+          </mat-error>
+          <mat-error *ngIf="toAccount?.hasError('sameAccount')">
+            From and To accounts cannot be the same.
+          </mat-error>
+        </mat-form-field>
+        <div *ngIf="toAccount?.value" class="account-available">
+          Available:
+          {{ getToAccountBalance() | currency }}
+        </div>
+      </div>
+    </div>
+
+    <!-- Amount Field -->
+    <div class="form-row">
+      <div class="form-field">
+        <h3 class="sub-heading">Amount</h3>
+        <mat-form-field appearance="outline" class="w-100">
+          <span matPrefix>&nbsp;&nbsp;$&nbsp;</span>
+          <input
+            matInput
+            formControlName="amount"
+            type="number"
+            placeholder="0.00"
+          />
+          <mat-error *ngIf="amount?.hasError('required')">
+            Amount is required.
+          </mat-error>
+          <mat-error *ngIf="amount?.hasError('min')">
+            Amount must be greater than 0.
+          </mat-error>
+          <mat-error *ngIf="amount?.hasError('pattern')">
+            Only valid numbers allowed.
+          </mat-error>
+          <mat-error *ngIf="amount?.hasError('insufficientFunds')">
+            Insufficient funds in the selected account.
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <!-- Date Field -->
+    <div class="form-row">
+      <div class="form-field">
+        <h3 class="sub-heading">Date</h3>
+        <div class="date-display">
+          {{ date?.value | date : "MMM d, y" }}
+        </div>
+      </div>
+    </div>
+
+    <!-- Note Field -->
+    <div class="form-row">
+      <div class="form-field">
+        <h3 class="sub-heading">Note (Optional)</h3>
+        <mat-form-field appearance="outline" class="w-100">
+          <input matInput formControlName="note" placeholder="Add Note" />
+          <mat-hint align="end"> {{ note?.value?.length || 0 }}/50 </mat-hint>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <!-- Button -->
+    <div class="form-actions">
+      <app-button
+        [label]="STATUS.PENDING == transferStatus ? 'Loading.. ' : 'Transfer'"
+        [disabled]="STATUS.PENDING == transferStatus"
+        [type]="'submit'"
+      ></app-button>
+      <span *ngIf="transferStatus" class="status-message">{{
+        transferStatus
+      }}</span>
+    </div>
+  </form>
+</mat-card>

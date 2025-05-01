@@ -1,0 +1,32 @@
+<mat-card class="account-overview-card">
+  <h2 class="overview-title">Account Overview</h2>
+
+  <div class="display-accounts">
+    <ng-container *ngIf="accounts?.length; else noAccounts">
+      <ng-container *ngFor="let account of accounts">
+        <mat-card
+          class="account-card"
+          [ngClass]="{
+            'chequing-card': account.accountType === 'Chequing',
+            'savings-card': account.accountType === 'Savings'
+          }"
+        >
+          <mat-card-header>
+            <mat-card-title>{{ account.accountType }} Account</mat-card-title>
+          </mat-card-header>
+
+          <mat-card-content>
+            <p>******{{ account.accountNumber.slice(-4) }}</p>
+            <p>Account Balance</p>
+            <p>${{ account.balance | number : "1.2-2" }}</p>
+            <p>Created: {{ account.dateCreated | date : "MMM d, y" }}</p>
+          </mat-card-content>
+        </mat-card>
+      </ng-container>
+    </ng-container>
+  </div>
+
+  <ng-template #noAccounts>
+    <p>No Accounts created</p>
+  </ng-template>
+</mat-card>

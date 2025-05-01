@@ -1,0 +1,7 @@
+<div class="account-container">
+  <app-account-overview [accounts]="accounts$ | async" />
+  <app-account-creation
+    [(accountCreationStatus)]="accountCreationStatus"
+    (createAccount)="createAccount($event)"
+  />
+</div>

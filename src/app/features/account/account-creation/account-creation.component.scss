@@ -1,0 +1,142 @@
+@use "../../../styles/media-queries" as *;
+@use "../../../styles/variables" as *;
+
+.create-account-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  background-color: $background-color;
+  margin-block: 2rem;
+
+  .create-account-card {
+    width: 100%;
+    background-color: $background-color;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+  }
+
+  .form-actions {
+    margin-top: 1rem;
+  }
+
+  .card-title {
+    margin-top: 0%;
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+
+    @include isMobile {
+      font-size: 1.5rem;
+    }
+    @include isTablet {
+      font-size: 2rem;
+    }
+  }
+
+  .form-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+
+  .form-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+  }
+
+  .form-field {
+    flex: 1;
+    min-width: 250px;
+  }
+
+  mat-form-field {
+    width: 100%;
+  }
+
+  ::ng-deep mat-label {
+    margin-bottom: 0.3rem;
+    display: inline-block;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #333;
+  }
+
+  ::ng-deep .mat-mdc-form-field-error {
+    color: $red;
+    font-size: 0.8rem;
+    font-weight: 500;
+    margin-top: 0.2rem;
+  }
+
+  input::placeholder {
+    padding-left: 0;
+  }
+
+  input {
+    padding-left: 0.8rem;
+  }
+
+  .sub-heading {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #111;
+    margin-bottom: 0;
+  }
+
+  .radio-group {
+    color: #0a0a0a;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .radio button[type="submit"] {
+    background-color: $blue;
+    margin-top: 1rem;
+    padding: 0.75rem 2rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 8px;
+    text-transform: capitalize;
+    letter-spacing: 0.5px;
+  }
+
+  @include isMobile {
+    .create-account-card {
+      padding: 1rem;
+    }
+
+    .card-title {
+      font-size: 1.4rem;
+    }
+
+    .form-row {
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .form-field {
+      width: 100%;
+    }
+  }
+
+  @include isTablet {
+    .create-account-card {
+      padding: 1rem;
+    }
+
+    .card-title {
+      font-size: 1.4rem;
+    }
+
+    .form-row {
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .form-field {
+      width: 100%;
+    }
+  }
+}

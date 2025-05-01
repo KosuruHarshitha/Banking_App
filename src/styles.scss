@@ -1,1 +1,31 @@
-/* You can add global styles to this file, and also import other style files */
+@use "./app/styles/variables" as *;
+@use "./app/styles/media-queries" as *;
+
+html,
+body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: $primary-font;
+  background-color: $background-color;
+  color: $text-color;
+  padding: 0;
+  margin: 0;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.status-message {
+  color: green;
+  font-weight: 600;
+  margin-left: 1rem;
+}

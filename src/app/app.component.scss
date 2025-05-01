@@ -1,0 +1,14 @@
+@use "../../src/app/styles/media-queries" as *;
+.main-container {
+  width: 80%;
+  margin: auto;
+
+  @include isMobile {
+    width: 90%;
+    margin: auto;
+  }
+  @include isTablet {
+    width: 90%;
+    margin: auto;
+  }
+}

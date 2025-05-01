@@ -1,0 +1,6 @@
+<app-transfer-creation
+  [(transferStatus)]="transferStatus"
+  [accounts]="accounts$ | async"
+  (transferFunds)="transferFunds($event)"
+/>
+<app-transfer-list [latestTransfers]="lastestTransfers$ | async" />
