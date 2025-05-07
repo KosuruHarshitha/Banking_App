@@ -13,20 +13,13 @@ export class TopNavComponent implements OnInit {
     firstName: 'Harshitha',
     lastName: 'Kosuru',
   };
-  avatar: string;
-
-  constructor() {
-    this.avatar =
-      this.userDetails?.firstName?.[0].toUpperCase() ||
-      '' + this.userDetails?.lastName?.[0].toUpperCase() ||
-      '';
-  }
+  avatar!: string;
 
   ngOnInit(): void {
     if (this.userDetails) {
       this.avatar =
         this.userDetails.firstName?.[0].toUpperCase() +
-        this.userDetails?.lastName?.[0].toUpperCase();
+        this.userDetails.lastName?.[0].toUpperCase();
     }
   }
 

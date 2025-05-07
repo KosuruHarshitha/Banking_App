@@ -1,4 +1,11 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnDestroy,
+  OnInit,
+  Output,
+} from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -18,7 +25,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './account-creation.component.html',
   styleUrls: ['./account-creation.component.scss'],
 })
-export class AccountCreationComponent implements OnInit {
+export class AccountCreationComponent implements OnInit, OnDestroy {
   @Input() accountCreationStatus: Status | null = null;
   @Output() accountCreationStatusChange = new EventEmitter<Status | null>();
   @Output() createAccount = new EventEmitter<Account>();
@@ -105,6 +112,10 @@ export class AccountCreationComponent implements OnInit {
       };
     }
     return account;
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.unsubscribe();
   }
 
   getButtonColor(): 'primary' | 'accent' {
